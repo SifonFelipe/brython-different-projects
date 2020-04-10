@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Web</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <style>
+    #titulo {
+        color:steelblue;
+        font-family: 'Ubuntu';
+    }
+    
+    #texto {
+        font-size: 16px;
+        font-family: 'Ubuntu';
+        color: navy;
+    }
+
+    #activador {
+        background-color: white;
+        border-color: black;
+    }
+
+    .texto_dias {
+        font-size: 16px;
+        font-family: 'Ubuntu';
+        color:cornflowerblue;
+    }
+
+    </style>
+</head>
+
+
+<body onload="brython()">
+
+    <h1 id='titulo'>Calculador de días a años, meses, semanas o/y días</h1>
+    <p id='texto'>Escribe los días para pasarlos a años, meses, semanas o/y días:</p>
+    <input type='text' id='input_gente' /><input type='button' id='activador' />
+    <div id='resultado_year' class='texto_dias'><span id='year'></span></div>
+    <div id='resultado_month' class='texto_dias'><span id='month'></span></div>
+    <div id='resultado_week' class='texto_dias'><span id='week'></span></div>
+    <div id='resultado_day' class='texto_dias'><span id='day'></span></div>
+    
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser import alert
+        #days to years, months, weeks and days
+
+        @bind(document['activador'], 'click')
+        def activador(e):
+            input_gente = document['input_gente'].value
+            dia_input = int(input_gente)
+            #I pass the input to a neutral numbers
+
+            año_print = 0
+            mes_print = 0
+            dias_print = 0
+            semanas_print = 0
+            #prints of final result
+
+            dias_print = 0
+
+            for l in range(dia_input):
+                dias_print += 1
+                if dias_print >= 30:
+                    mes_print += 1
+                    dias_print -= 30
+                if mes_print >= 12:
+                    año_print += 1
+                    mes_print -= 12
+
+            for i in range(dias_print):
+                if dias_print >= 7:
+                    semanas_print += 1
+                    dias_print -= 7
+
+            document['resultado_year'].text = 'Son {} años'.format(año_print)
+            document['resultado_month'].text = 'Son {} meses'.format(mes_print)
+            document['resultado_week'].text = 'Son {} semanas'.format(semanas_print)
+            document['resultado_day'].text = 'Son {} dias'.format(dias_print)
+    </script>
+</body>
+</html>
