@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"></link>
     <style>
    .title {
     font-family: 'Courier New';
@@ -14,11 +14,13 @@
     }
     .text {
         font-family: 'Roboto', sans-serif;;
-        color:rgb(26, 144, 190);
+        color:rgb(8, 168, 231);
+        font-size: 20px;
     }
     .links {
         font-family: 'Roboto', sans-serif;
-        color:rgb(64, 195, 204)
+        color:rgb(64, 195, 204);
+        font-size: 20px;
     }
     body {
         background-color:rgb(0, 0, 0)
@@ -29,10 +31,14 @@
 
 <body onload="brython()">
     <h1 class='title'>Hola!</h1>
-    <ul><p class='text'>Páginas un poco útil e inútil a la vez: </p>
+    <p class='text'>Páginas un poco útiles e inútiles a la vez: </p>
+    <ul>
         <li> <a class='links' href="/pasar_dias.html"> Calculador de días</a> </li>
+        <p></p>
         <li><a class='links' href="/dolar.html">Peso argentino a dolar (desactualizado)</a></li>
+        <p></p>
         <li><a class='links' href="/notas/note.html"> Notas (beta)</a></li>
+    </ul>
     <script type="text/python">
     </script>
 </body>
