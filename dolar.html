@@ -7,20 +7,42 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
     <style>
-    .texto {
-        color:darkslategray;
-        font-size: 16px;
-        font-family: 'Ubuntu';
+    body {
+        background-color:black;
     }
 
     #Titulo {
-        color: blue;
+        color: rgb(27, 116, 189);
         font-family: 'Ubuntu';
     }
 
     .boton {
         background-color:lightblue;
         border-color:lightblue;
+        font-family: 'Ubuntu';
+    }
+    .boton_elige {
+        background: transparent;
+        border: 0;
+        color: green;
+        width: 75px;
+        height: 75px;
+        font-size: 60px;
+    }
+    .input {
+        background: transparent;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid rgb(27, 236, 236);
+        font-size: 14px;
+        font-family: "Ubuntu";
+        width: 800px;
+        color:rgb(17, 232, 240);
+        font-size: 20px;
+    }
+    .texto {
+        color:rgb(14, 247, 247);
+        font-size: 20px;
         font-family: 'Ubuntu';
     }
     </style>
@@ -30,7 +52,6 @@
 <body onload="brython()">
 
     <h1 id='Titulo'>Dólar a Peso Argentino e inversa</h1>
-    <p class='texto'>Escoge a que moneda deseas cambiar:</p>
     <input type='button' id='dolar_a_peso' class='boton' value='Dolares a Pesos Argentinos' />
     <input type='button' id='peso_a_dolar' class='boton' value='Peso Argentino a Dolares' />
     <div class='texto' id='seleccion'></div>
@@ -49,15 +70,15 @@
         def dolar_p(e):
             document['peso_dolar'].html = ""
             document['seleccion'].html = "<p>Escribe la cantidad:</p>"
-            document['number_resultado'].html = "<input type='text' id='number'/>"
-            document['dolar_peso'].html = "<input type='button' id='dolar_peso' />"
+            document['number_resultado'].html = "<input type='text' class='input' id='number'/>"
+            document['dolar_peso'].html = "<input type='button' class='boton_elige' id='dolar_peso' value='✔' />"
 
         @bind(document['peso_a_dolar'], 'click')
         def peso_d(e):
             document['dolar_peso'].html = ""
             document['seleccion'].html = "<p class='texto'>Escribe la cantidad:<p>"
-            document['number_resultado'].html = "<input type='text' id='number' />"
-            document['peso_dolar'].html = "<input type='button' id='peso_dolar' />"
+            document['number_resultado'].html = "<input type='text' class='input' id='number' />"
+            document['peso_dolar'].html = "<input type='button' class='boton_elige' value='✔' id='peso_dolar' />"
             
         @bind(document['peso_dolar'], 'click')
         def resultado(e):
