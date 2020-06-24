@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Notas</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <style>
+        .input {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            border-bottom: 1px solid black;
+            font-size: 14px;
+            font-family: "Ubuntu";
+            width: 1300px;
+        }
+        .hecho {
+            width: 75px;
+            height: 75px;
+            font-size: 60px;
+            color: rgb(33, 148, 29);
+            border: 0;
+            background: transparent;
+        }
+        .titulo {
+            font-size:45px;
+            font-family: "Ubuntu";
+            border: 0;
+            background-color:rgb(245, 237, 133);
+            outline: 0;
+            width: 1000px;
+        }
+        #crear {
+            background-color: transparent;
+            color:rgb(211, 17, 17);
+            font-family: "Ubuntu";
+            border-color:rgb(240, 38, 23);
+            height: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body onload="brython()">
+    <input type='text' class='titulo' /><input type='button' value='Crear nueva nota' id='crear' />
+    <p></p>
+    <div id='notas'></div>
+    
+    <body style="background: url(https://cdn.woodstocksupply.com/media/catalog/product/cache/1/image/420x420/9df78eab33525d08d6e5fb8d27136e95/S/Y/SY914_2.jpg) ; background-size: 100% 100%;" ></body>
+
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser import alert
+        from uuid import uuid4
+
+        def borrar(ev):
+            print('Target:', ev.currentTarget.attrs['data-id-borrar']) 
+            nota = 'nota' + ev.currentTarget.attrs['data-id-borrar']
+            document[nota].html = ''
+
+        @bind(document['crear'], "click")
+        def nuevo(e):
+            boton_nombre = str(uuid4())
+            nota_nombre = 'nota' + boton_nombre
+            suma = document.createElement("div", id=nota_nombre)
+            suma.html = "<div id='{}'><input type='text' class='input' /> <input type='button' value='✔'class='hecho' data-id-borrar='{}' /></div>".format(nota_nombre, boton_nombre)
+            document['notas'].appendChild(suma)
+
+            for cosa in suma.select(".hecho"):
+                cosa.bind("click", borrar)
+
+    </script>
+</body>
+</html>
