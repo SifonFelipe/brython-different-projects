@@ -2,29 +2,45 @@
 <html lang="en">
 
 <head>
-    <title>Traductor Días</title>
+    <title>Calculador Días</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <body style='background-color: rgb(0, 0, 0);' ></body>
     <style>
     #titulo {
         color:steelblue;
-        font-family: 'Ubuntu';
+        font-family: 'Courier New';
     }
     
     #texto {
         font-size: 16px;
         font-family: 'Ubuntu';
-        color: navy;
+        color: rgb(0, 124, 128);
+    }
+
+    #input_gente {
+        background: transparent;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid rgb(149, 211, 78);
+        font-size: 14px;
+        font-family: "Ubuntu";
+        width: 800px;
+        color:rgb(149, 211, 78)
     }
 
     #activador {
-        background-color:black;
-        border-color: black;
+        width: 75px;
+        height: 75px;
+        font-size: 60px;
+        color: rgb(33, 148, 29);
+        border: 0;
+        background: transparent;
     }
 
     .texto_dias {
-        font-size: 16px;
+        font-size: 30px;
         font-family: 'Ubuntu';
         color:cornflowerblue;
     }
@@ -36,13 +52,13 @@
 <body onload="brython()">
 
     <h1 id='titulo'>Calculador de días a años, meses, semanas o/y días</h1>
-    <p id='texto'>Escribe los días para pasarlos a años, meses, semanas o/y días:</p>
-    <input type='text' id='input_gente' /><input type='button' id='activador' />
+    <p id='texto'>Escribe los días:</p>
+    <input type='text' id='input_gente' /><input type='button' id='activador' value='✔' />
     <div id='resultado_year' class='texto_dias'></div>
     <div id='resultado_month' class='texto_dias'></div>
     <div id='resultado_week' class='texto_dias'></div>
     <div id='resultado_day' class='texto_dias'></div>
-    
+
     <script type="text/python">
         from browser import document
         from browser import bind
