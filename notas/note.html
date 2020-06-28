@@ -44,9 +44,11 @@
 </head>
 
 <body onload="brython()">
-    <input type='text' class='titulo' /><input type='button' value='Crear nueva nota' id='crear' />
+    <input type='text' class='titulo' value='Title' /><input type='button' value='Crear nueva nota' id='crear' />
+    <input type='button' id='save' value='Guardar'/> <input type='button' id='cargar' value='Cargar' />
     <p></p>
-    <div id='notas'></div>
+    <div id='contenedor'></div>
+        <div id='notas'></div>
     
     <body style="background: url(https://cdn.woodstocksupply.com/media/catalog/product/cache/1/image/420x420/9df78eab33525d08d6e5fb8d27136e95/S/Y/SY914_2.jpg) ; background-size: 100% 100%;" ></body>
 
@@ -55,6 +57,7 @@
         from browser import bind
         from browser import alert
         from uuid import uuid4
+        from browser.local_storage import storage
 
         def borrar(ev):
             print('Target:', ev.currentTarget.attrs['data-id-borrar']) 
@@ -71,6 +74,25 @@
 
             for cosa in suma.select(".hecho"):
                 cosa.bind("click", borrar)
+
+        @bind(document['save'], "click")
+        def guardar(e):
+            suma_storage = ''
+            for valor in document.select('.input'):    
+                boton_nombre = str(uuid4())
+                nota_nombre = 'nota' + boton_nombre 
+                valor_input = valor.value
+                suma_storage += "<div id='{}'><input type='text' class='input' value='{}' /> <input type='button' value='✔'class='hecho' data-id-borrar='{}' /></div>".format(nota_nombre, valor_input, boton_nombre)
+
+            storage['save'] = suma_storage
+
+        @bind(document['cargar' ], 'click')
+        def cargar(e):
+            print('in the cloud: ', storage['save'])
+            document['notas'].html = storage['save']
+            for botones_cargados in document.select(".hecho"):
+                botones_cargados.bind("click", borrar)
+
 
     </script>
 </body>
