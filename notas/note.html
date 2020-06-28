@@ -59,6 +59,8 @@
         from uuid import uuid4
         from browser.local_storage import storage
 
+        document['contenedor'].html += storage['save']
+
         def borrar(ev):
             print('Target:', ev.currentTarget.attrs['data-id-borrar']) 
             nota = 'nota' + ev.currentTarget.attrs['data-id-borrar']
