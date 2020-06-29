@@ -44,12 +44,12 @@
 </head>
 
 <body onload="brython()">
-    <input type='text' class='titulo' value='Title' /><input type='button' value='Crear nueva nota' id='crear' />
+    <input type='text' class='titulo' value='Título' /><input type='button' value='Crear nueva nota' id='crear' />
     <input type='button' id='save' value='Guardar'/> <input type='button' id='cargar' value='Cargar' />
     <p></p>
     <div id='contenedor'></div>
         <div id='notas'></div>
-    
+
     <body style="background: url(https://cdn.woodstocksupply.com/media/catalog/product/cache/1/image/420x420/9df78eab33525d08d6e5fb8d27136e95/S/Y/SY914_2.jpg) ; background-size: 100% 100%;" ></body>
 
     <script type="text/python">
@@ -60,20 +60,22 @@
         from browser.local_storage import storage
 
         def borrar(ev):
-            print('Target:', ev.currentTarget.attrs['data-id-borrar']) 
+            print('Target: ', ev.currentTarget.attrs['data-id-borrar'])
             nota = 'nota' + ev.currentTarget.attrs['data-id-borrar']
             document[nota].html = ''
 
+        def add_note(value=""):
+            boton_nombre = str(uuid4())
+            nombre_de_la_nota = 'nota' + boton_nombre
+            sumar = document.createElement("div", id=nombre_de_la_nota)
+            sumar.html = "<div id='{}'><input type='text' class='input' value='{}' /> <input type='button' value='✔'class='hecho' data-id-borrar='{}' /></div>".format(nombre_de_la_nota, value, boton_nombre)
+            document['notas'].appendChild(sumar)
+            for cosa in document.select('.hecho'):
+                cosa.bind("click", borrar)
+
         @bind(document['crear'], "click")
         def nuevo(e):
-            boton_nombre = str(uuid4())
-            nota_nombre = 'nota' + boton_nombre
-            suma = document.createElement("div", id=nota_nombre)
-            suma.html = "<div id='{}'><input type='text' class='input' /> <input type='button' value='✔'class='hecho' data-id-borrar='{}' /></div>".format(nota_nombre, boton_nombre)
-            document['notas'].appendChild(suma)
-
-            for cosa in suma.select(".hecho"):
-                cosa.bind("click", borrar)
+            add_note()
 
         @bind(document['save'], "click")
         def guardar(e):
@@ -85,14 +87,14 @@
 
         @bind(document['cargar'], 'click')
         def cargar(e):
-            global lista
+            cargar_principio()
+
+        def cargar_principio():
             lista = storage["values"].split('SUPERSEPARADOR')
-            for i in lista:
-                boton_nombre = str(uuid4())
-                nota_nombre = 'nota' + boton_nombre
-                suma_storage = document.createElement("div", id=nota_nombre)
-                suma_storage.html = "<div id='{}'><input type='text' class='input' value='{}' /> <input type='button' value='✔'class='hecho' data-id-borrar='{}' /></div>".format(nota_nombre, texto, boton_nombre)
-                document['contenedor'].appendChild(suma_storage)
+            for valores in lista:
+                add_note(valores)
+
+        cargar_principio()
 
     </script>
 </body>
