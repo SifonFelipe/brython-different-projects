@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet"></link>
     <style>
         .input {
             background: transparent;
@@ -24,28 +25,38 @@
             border: 0;
             background: transparent;
         }
+        .guarcar {
+            width: 75px;
+            height: 75px;
+            font-size: 60px;
+            color:rgb(250, 2, 2);
+            background-color:rgba(255, 255, 0, 0.603);
+            border-color: rgba(255, 255, 0, 0.096);
+            font-family: 'Balsamiq Sans', cursive;
+        }
         .titulo {
             font-size:45px;
             font-family: "Ubuntu";
             border: 0;
-            background-color:rgb(245, 237, 133);
+            background-color:rgb(241, 230, 75);
             outline: 0;
             width: 1000px;
         }
         #crear {
-            background-color: transparent;
+            background-color:rgba(255, 230, 0, 0.116);
             color:rgb(211, 17, 17);
             font-family: "Ubuntu";
-            border-color:rgb(240, 38, 23);
+            border-color:transparent;
             height: 30px;
-            font-size: 20px;
+            font-size: 25px;
         }
+
     </style>
 </head>
 
 <body onload="brython()">
     <input type='text' class='titulo' value='Título' /><input type='button' value='Crear nueva nota' id='crear' />
-    <input type='button' id='save' value='Guardar'/> <input type='button' id='cargar' value='Cargar' />
+    <input type='button' id='save' value='G' class='guarcar'/> <input type='button' id='cargar' value='C' class='guarcar' />
     <p></p>
     <div id='contenedor'></div>
         <div id='notas'></div>
