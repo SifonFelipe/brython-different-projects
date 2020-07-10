@@ -13,15 +13,51 @@
     color:rgb(61, 123, 139);
     }
     .text {
-        font-family: 'Roboto', sans-serif;;
+        font-family: 'Roboto', sans-serif;
         color:rgb(8, 168, 231);
         font-size: 20px;
     }
-    .links {
-        font-family: 'Roboto', sans-serif;
-        color:rgb(64, 195, 204);
-        font-size: 20px;
+
+    .boton{
+        left: 0%;
+        top: 50%;
+        text-align: center;
+        width: auto;
+        height: auto;
+        position: relative;
+        display: block;
+        color: white;
+        font-size: 25px;
+        font-family: "Ubuntu";
+        text-decoration: none;
+        margin: 30px 0;
+        border: 2px solid #ff7675;
+        padding: 14px 50px;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 1s all ease;
     }
+
+    .boton::before{
+        background: #ff7675;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        transition: all 0.6s ease;
+    }
+
+    .boton::before{
+        width: 0;
+        height: 100%;
+    }
+
+    .boton:hover::before{
+        width: 100%;
+    }
+
     body {
         background-color:rgb(0, 0, 0)
     }
@@ -33,11 +69,13 @@
     <h1 class='title'>Hola!</h1>
     <p class='text'>Páginas un poco útiles e inútiles a la vez: </p>
     <ul>
-        <li> <a class='links' href="/pasar_dias.html"> Calculador de días</a> </li>
+        <li> <a class='boton' href="/pasar_dias.html"> Calculador de días</a> </li>
         <p></p>
-        <li><a class='links' href="/dolar.html">Peso argentino a dolar (desactualizado)</a></li>
+        <li><a class='boton' href="/dolar.html">Peso argentino a dolar (desactualizado)</a></li>
         <p></p>
-        <li><a class='links' href="/notas/note.html"> Notas (beta)</a></li>
+        <li><a class='boton' href="/notas/note.html">Notas (beta)</a></li>
+        <p></p>
+        <li><a class='boton' href='/Contador/contador-menu.html'>Competencia</a></li>
     </ul>
     <script type="text/python">
     </script>
