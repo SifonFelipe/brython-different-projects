@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>1 vs 1</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <link rel="stylesheet" href='1vs1-de-css.css' >
+    <style>        
+    </style>
+</head>
+
+<body onload="brython()" style='background-image: url(vs.jpg);'>
+    <button id='agregar_azul' class='azul sumar'>+</button>
+    <button id='restar_azul' class='azul restar'>-</button>
+    <button id='restar_rojo' class='rojo restarr'>-</button>
+    <button id='sumar_rojo' class='rojo sumarr'>+</button>
+    <button id='restablecer' class='botones'>Restablecer</button>
+    <button id='guardar' class='botones'>Guardar</button>
+    <button id='cargar' class='botones'>Cargar</button>
+    <input type='text' id='puntaje_azul' pattern="^[+-]?\d+(,\d{2})?" value=0 />
+    <input type='text' id='puntaje_rojo' pattern="^[+-]?\d+(,\d{2})?" value=0 />
+
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser import alert
+        from browser.local_storage import storage
+
+        @bind(document['agregar_azul'], 'click')
+        def agregar_azul(e):
+            value = document['puntaje_azul'].value
+            if value == '':
+                document['puntaje_azul'].value = 0
+            else:
+                x = int(value)
+                document['puntaje_azul'].value = x + 1               
+                print('azul: ', x + 1)
+
+        @bind(document['restar_azul'], 'click')
+        def restar_azul(e):
+            value = document['puntaje_azul'].value
+            if value == '':
+                document['puntaje_azul'].value = 0
+            else:
+                x = int(value)
+                document['puntaje_azul'].value = x - 1
+                print('azul: ', x - 1)
+
+        @bind(document['restar_rojo'], 'click')
+        def restar_rojo(e):
+            value = document['puntaje_rojo'].value
+            if value == '':
+                document['puntaje_rojo'].value = 0
+            else:
+                x = int(value)
+                document['puntaje_rojo'].value = x - 1
+                print('rojo: ', x - 1)
+
+        @bind(document['sumar_rojo'], 'click')
+        def sumar_rojo(e):
+            value = document['puntaje_rojo'].value
+            if value == '':
+                document['puntaje_rojo'].value = 0
+            else:
+                x = int(value)
+                document['puntaje_rojo'].value = x + 1
+                print('rojo: ', x + 1)
+        
+        @bind(document['restablecer'], 'click')
+        def volver(e):
+            document['puntaje_rojo'].value = 0
+            document['puntaje_azul'].value = 0
+            
+        @bind(document['guardar'], 'click')
+        def guardar(e):
+            x = document['puntaje_rojo'].value
+            y = document['puntaje_azul'].value
+            storage['red_value'] = x
+            storage['blue_value'] = y
+
+        @bind(document['cargar'], 'click')
+        def cargar(e):
+            document['puntaje_rojo'].value = storage['red_value']
+            document['puntaje_azul'].value = storage['blue_value']
+
+    </script>
+</body>
+</html>
