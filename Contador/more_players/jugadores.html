@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <link rel='stylesheet' href='jugadores_css.css' >
+    <style>
+
+    </style>
+</head>
+
+<body onload="brython()">
+    <button id='agregar_persona' class='animation'>Añadir persona</button>
+    <button id='guardar' class='animation2'>Guardar</button>
+    <button id='cargar' class='animation2'>Cargar</button>
+    <div id='agregar_kit' >
+    </div>
+
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser import alert
+        from browser.local_storage import storage
+        from uuid import uuid4
+
+        def borrar(ev):
+            x = 'borrar' + ev.currentTarget.attrs['data-id-borrar']
+            document[x].html = ''
+
+        def sumarpuntos(ev):
+            x = ev.currentTarget.attrs['data-id-nota']
+            print(x)
+            valor_no_int = document[x].value
+            if valor_no_int == '':
+                document[x].value = 0
+            else:
+                try:
+                    valor = int(valor_no_int)
+                    document[x].value = valor + 1
+                except ValueError:
+                    alert('Only Numbers :(')
+
+        def restar(ev):
+            x = ev.currentTarget.attrs['data-id-nota']
+            print(x)
+            valor_no_int = document[x].value
+            if valor_no_int == '':
+                document[x].value = 0
+            else:
+                try:
+                    valor = int(valor_no_int)
+                    document[x].value = valor - 1
+                except ValueError:
+                    alert('Only Numbers :(')
+
+        def agregar_gente(value=""):
+            nombre_de_todo_el_puntaje = str(uuid4())
+            nombre_input = str(uuid4())
+            menos_id = str(uuid4())
+            mas_id = str(uuid4())
+            k = 'borrar' + nombre_de_todo_el_puntaje
+
+            sumar = document.createElement("div", id=k)
+
+            sumar.html = f"<div id='{k}' > <input type='text' class='input' pattern='^[+-]?\d+(,\d{2})?' id='{nombre_input}' value='{value}' /> <button class='mas' id='mas_id' data-id-nota='{nombre_input}'>+</button> <button class='menos' id='menos_id' data-id-nota='{nombre_input}'>-</button> <button class='borrar' data-id-borrar='{nombre_de_todo_el_puntaje}'>✘</button> </div>"
+
+            document['agregar_kit'].appendChild(sumar)
+
+            for i in document.select('#menos_id'):
+                i.bind("click", restar)
+                document['menos_id'].id = ''
+
+            for a in document.select('#mas_id'):
+                a.bind("click", sumarpuntos)
+                document['mas_id'].id = ''
+            
+            for j in document.select('.borrar'):
+                j.bind("click", borrar)
+
+        @bind(document['agregar_persona'], "click")
+        def agregar(e):
+            agregar_gente()
+
+        @bind(document['guardar'], "click")
+        def guardar(e):
+            list = []
+            for i in document.select('.input'):
+                list.append(i.value)
+
+            storage['values'] = 'separar'.join(list)
+
+        @bind(document['cargar'], "click")
+        def cargar(e):
+            list = storage['values'].split('separar')
+            for j in list:
+                agregar_gente(j)
+                
+
+    </script>
+</body>
+</html>
