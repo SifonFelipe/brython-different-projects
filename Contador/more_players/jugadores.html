@@ -56,7 +56,7 @@
                 except ValueError:
                     alert('Only Numbers :(')
 
-        def agregar_gente(value=""):
+        def agregar_gente(puntaje="", nombre=""):
             nombre_de_todo_el_puntaje = str(uuid4())
             nombre_input = str(uuid4())
             menos_id = str(uuid4())
@@ -65,7 +65,7 @@
 
             sumar = document.createElement("div", id=k)
 
-            sumar.html = f"<div id='{k}' > <input type='text' class='input' pattern='^[+-]?\d+(,\d{2})?' id='{nombre_input}' value='{value}' /> <button class='mas' id='mas_id' data-id-nota='{nombre_input}'>+</button> <button class='menos' id='menos_id' data-id-nota='{nombre_input}'>-</button> <button class='borrar' data-id-borrar='{nombre_de_todo_el_puntaje}'>✘</button> </div>"
+            sumar.html = f"<div id='{k}' > <input type='text' class='input' pattern='^[+-]?\d+(,\d{2})?' id='{nombre_input}' value='{puntaje}' /> <button class='mas' id='mas_id' data-id-nota='{nombre_input}'>+</button> <button class='menos' id='menos_id' data-id-nota='{nombre_input}'>-</button> <button class='borrar' data-id-borrar='{nombre_de_todo_el_puntaje}'>✘</button><input type='text' id='nombre' value='{nombre}' class='texto_nombre' /> </div>"
 
             document['agregar_kit'].appendChild(sumar)
 
@@ -90,14 +90,24 @@
             for i in document.select('.input'):
                 list.append(i.value)
 
-            storage['values'] = 'separar'.join(list)
+            storage['puntaje'] = 'separar'.join(list)
+
+            list_nombres = []
+            for i in document.select('.texto_nombre'):
+                list_nombres.append(i.value)
+
+            storage['nombres'] = 'separar'.join(list_nombres)
 
         @bind(document['cargar'], "click")
         def cargar(e):
-            list = storage['values'].split('separar')
-            for j in list:
-                agregar_gente(j)
-                
+            list = storage['puntaje'].split('separar')
+            list_name = storage['nombres'].split('separar')
+            x = 0
+
+            for score in list:
+                name = list_name[x]
+                agregar_gente(score, name)
+                x += 1
 
     </script>
 </body>
