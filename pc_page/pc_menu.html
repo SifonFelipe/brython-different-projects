@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>PC Build</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <link rel='shortcut icon' type="image/png" href="https://safework.es/wp-content/uploads/2020/05/icon-pc-2.png" >
+    <link rel='stylesheet' href='page-style.css' >
+
+    <style>
+        body {
+            background-color: #000;
+            margin: 40px 20px;
+            width: 30000;
+        }
+
+        #title {
+            color: white;
+            font-size: 60px;
+            font-family: "Ubuntu";
+            position: absolute;
+            margin: 10px 10px;
+            left: 1.5%;
+            top: 1.5%;
+        }
+
+    </style>
+</head>
+
+<body onload="brython()">
+    <div id='base'>
+        <h2 id='title'>PC Build</h1>
+        <button id='cpu' class='glow-on-hover' data-id-bind='cpu'>CPU</button>
+        <button id='gpu' class='glow-on-hover' data-id-bind='gpu'>GPU</button>
+        <button id='motherboards' class='glow-on-hover' data-id-bind='motherboards'>Motherboards</button>
+        <button id='ram' class='glow-on-hover' data-id-bind='ram'>RAM</button>
+        <button id='hdd' class='glow-on-hover' data-id-bind='hdd'>HDD</button>
+        <button id='ssd' class='glow-on-hover' data-id-bind='ssd'>SSD</button>
+        <button id='cabinet' class='glow-on-hover' data-id-bind='cabinet'>Cabinet</button>
+        <button id='psu' class='glow-on-hover' data-id-bind='psu'>Power Supply</button>
+        <button id='show_carrito' style='position: absolute; left: 90%;'>Carrito</button>
+    </div>
+
+    <div id='cpus' style="display:none">
+        <button class='retroceder' data-id-retroceder="cpu" >↩</button>
+        <div style='margin: 40px 0px'>
+            <div id='cartryzen53400g'>
+
+                <img src='cpus/ryzen53400g.jpg' class='images' align='left' style='float:left'/>
+                <a id='ryzen53400gg' href='https://www.amazon.com/AMD-Ryzen-3400G-8-Thread-Processor/dp/B07SXNDKNM?gclid=CjwKCAjw-5v7BRAmEiwAJ3DpuG07wWGT3DNSpnk1x5YaWPmLOYdMcz7ZQE6gipuohWuhs8qIBC1HvBoCZlcQAvD_BwE' class='texto_costado'>Ryzen 5 3400g 4 Cores 8 Threads. Base Clock 3.7GHz, Max Boost Clock: 4.2GHz.</a>  
+                <p class='more_specs'>145US$. Socket AM4, Integrated Graphics (Radeon RX Vega 11)(The world's most powerful graphics in a desktop processor), Unlocked, it includes a CPU Cooler.</p>
+                <button class='add-to-cart' style='margin: 40px 0px; position: relative; left: -2%;' data-id-href='https://www.amazon.com/AMD-Ryzen-3400G-8-Thread-Processor/dp/B07SXNDKNM?gclid=CjwKCAjw-5v7BRAmEiwAJ3DpuG07wWGT3DNSpnk1x5YaWPmLOYdMcz7ZQE6gipuohWuhs8qIBC1HvBoCZlcQAvD_BwE' data-id-value='Ryzen 5 3400g 4 Cores 8 Threads. Base Clock 3.7GHz, Max Boost Clock: 4.2GHz.' data-id-specs="145US$. Socket AM4, Integrated Graphics (Radeon RX Vega 11)(The world's most powerful graphics in a desktop processor), Unlocked, it includes a CPU Cooler." data-id-precio='145'>Add To Cart</button>
+
+            </div>
+        </div>
+        <div style='margin: 40px 0px'>
+            <div id='cartryzen53600'>
+                <img src='cpus/ryzen53600.jpg' class='images' style='float:left' align='left'/>
+                <a id='ryzen536002' href='https://www.amazon.com/-/es/Ryzen-3600-Procesador-escritorio-desbloqueado/dp/B07STGGQ18' class='texto_costado'>Ryzen 5 3600 6 Cores 12 Threads. Base Clock 4.2 GHz</a>
+                <p class='more_specs'>205US$. Socket AM4, Unlocked, it includes a silent CPU Cooler</p>
+                <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/Ryzen-3600-Procesador-escritorio-desbloqueado/dp/B07STGGQ18' data-id-value='Ryzen 5 3600 6 Cores 12 Threads. Base Clock 4.2 GHz' data-id-specs='205US$. Socket AM4, Unlocked, it includes a silent CPU Cooler' data-id-precio='205' style='margin: 40px 0px;'>Add To Cart</button>
+            </div>
+        </div>
+
+        <div style='margin: 40px 0px'>
+            <div id='cartryzen73700x' >
+                <img src='cpus/ryzen73700x.jpg' class='images' align='left' style='float: left;'/>
+        
+                <a href='https://www.amazon.com/-/es/Ryzen-3700X-16-Thread-Procesador-refrigeraci%C3%B3n/dp/B07SXMZLPK' class='texto_costado'>Ryzen 7 3700x 8 Core 16 Threads. 4.4GHz max boost.</a>
+            
+                <p class='more_specs'>295$. Includes AMD Wraith Prism with Leds. 8 Cores and 16 Threads!. Socket AM4</p>
+
+            </div>
+            <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/Ryzen-3700X-16-Thread-Procesador-refrigeraci%C3%B3n/dp/B07SXMZLPK' data-id-specs='295$. Includes AMD Wraith Prism with Leds. 8 Cores and 16 Threads!. Socket AM4' data-id-value='Ryzen 7 3700x 8 Core 16 Threads. 4.4GHz max boost.' data-id-precio='295' style='margin: 40px 0px;'>Add To Cart</button>
+        </div>
+
+        <div style='margin: 20px 0px'>
+            <div id='carti39100f'>
+                <img src='cpus/i39100f.png' class='images' align='left' style='float:left;'/>
+
+                <a id='i39100f' href='https://www.amazon.com/-/es/Intel-Core-i3-9100F-Procesador-procesador/dp/B07R7Q3JZH' class='texto_costado'>i3 9100f 4 Cores 4 Threads. Max boost 4.2GHz.</a>
+                <p class='more_specs'>72US$. Socket Intel Series 300. Default Boost 3.6 GHz</p>
+                <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/Intel-Core-i3-9100F-Procesador-procesador/dp/B07R7Q3JZH' data-id-value='i3 9100f 4 Cores 4 Threads. Max boost 4.2GHz.' data-id-specs='72US$. Socket Intel Series 300. Default Boost 3.6 GHz' data-id-precio='72' style='margin: 40px 0px;'>Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id='gpus' style="display:none">
+        <button data-id-retroceder='gpu' class='retroceder'>↩</button>
+
+        <div id='cartgtx1650superasus' style='margin: 40px 0px;'>
+
+            <img src='gpus/gtx1650superasus.jpg' class='images' align='left' style='float: left;' />
+            <a id='1650super' href='https://www.amazon.com/-/es/gp/offer-listing/B081KY5L57/ref=dp_olp_NEW_mbc?ie=UTF8&condition=NEW' class='texto_costado'>GTX 1650 Super Asus HDMI DP DVI 4GB.</a>
+            <p class='more_specs'>Around 250US$. 1530 MHz Core - Boostable to 1800 MHz. 4GB of GDDR6 VRAM. 128-Bit Memory Interface. 12 Gb/s Memory Speed</p>
+            <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/gp/offer-listing/B081KY5L57/ref=dp_olp_NEW_mbc?ie=UTF8&condition=NEW' data-id-value='GTX 1650 Super Asus HDMI DP DVI 4GB.' data-id-specs='Around 250US$. 1530 MHz Core - Boostable to 1800 MHz. 4GB of GDDR6 VRAM. 128-Bit Memory Interface. 12 Gb/s Memory Speed' data-id-precio='250' style='margin: 40px 5px;'>Add To Cart</button>
+        </div>
+        
+        <div id='gtx1660ti' style='margin: 40px 0px;'>
+            <img src='gpus/gtx1660ti.jpg' class='images' align='left' style='float: left;' />
+            <a id='1660super' href='https://www.amazon.com/-/es/GeForce-GTX-1660-Ti-OC/dp/B07N824KNV/ref=sr_1_1?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=gtx+1660ti&qid=1601219966&sr=8-1' class='texto_costado'>Gigabyte Geforce GTX 1660Ti. OC 6GB. 192 bits.</a>
+            <p class='more_specs'>269US$. 6GB 192 bits GDDR6. 1830MHz (Reference Card: 1770MHz). Wattage: 120W.</p>
+            <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/GeForce-GTX-1660-Ti-OC/dp/B07N824KNV/ref=sr_1_1?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=gtx+1660ti&qid=1601219966&sr=8-1' data-id-value='Gigabyte Geforce GTX 1660Ti. OC 6GB. 192 bits.' data-id-specs='269US$. 6GB 192 bits GDDR6. 1830MHz (Reference Card: 1770MHz). Wattage: 120W.' data-id-precio='269' style='margin: 40px 5px;'>Add to Cart</button>
+        </div>
+
+        <div style='margin: 40px 0px;'>
+            <img src='gpus/rtx3070.jpg' class='images' align='left' style='float: left;'/>
+            <a id='rtx3070' href='https://www.nvidia.com/es-la/geforce/graphics-cards/30-series/rtx-3070/' class='texto_costado'>RTX 3070. 8GB GDDR6</a>
+            <p class='more_specs'>499US$. CUDA cores: 5,888, memory interface: 256-bit. Wattage: 220W. 20,4 TFLOPS. Release Date: October 15, 2020. Boost Clock (MHz)1730.</p>
+            <button class='add-to-cart' data-id-href='https://www.nvidia.com/es-la/geforce/graphics-cards/30-series/rtx-3070/' data-id-value='RTX 3070. 8GB GDDR6' data-id-specs='499US$. CUDA cores: 5,888, memory interface: 256-bit. Wattage: 220W. 20,4 TFLOPS. Release Date: October 15, 2020. Boost Clock (MHz)1730.' data-id-precio='499' style='margin: 40px 5px;'>Add to Cart</button>
+        </div>
+
+        <div style='margin: 40px 0px;'>
+            <img src='gpus/rtx2070.jpg' class='images' align='left' style='float: left;' />
+            <a id='rtx2070' href='https://www.amazon.com/-/es/Tarjeta-Gigabyte-Windforce-ventiladores-GV-N2070WF2-8GD/dp/B0856XW6P1/ref=sr_1_3?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=rtx+2070&qid=1601236593&sr=8-3' class='texto_costado'>RTX 2070. 8GB GDDR6.</a>
+            <p class='more_specs'>539US$. 8GB GDDR6, 256-bits. Windforce 2x.</p>
+            <button class='add-to-cart' data-id-href='https://www.amazon.com/-/es/Tarjeta-Gigabyte-Windforce-ventiladores-GV-N2070WF2-8GD/dp/B0856XW6P1/ref=sr_1_3?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=rtx+2070&qid=1601236593&sr=8-3' data-id-value='RTX 2070. 8GB GDDR6' data-id-precio='539' data-id-specs='539US$. 8GB GDDR6, 256-bits. Windforce 2x.'>Add to Cart</button>
+        </div>
+
+    </div>
+
+    <div id='motherboardss' style='display:none' >
+        <button class='retroceder' data-id-retroceder='motherboards'>↩</button>
+
+    </div>
+
+    <div id='rams' style='display:none' >
+
+    </div>
+
+    <div id='hdds' style='display:none' >
+
+    </div>
+
+    <div id='ssds' style='display:none' >
+
+    </div>
+
+    <div id='cabinets' style='display:none' >
+
+    </div>
+
+    <div id='psus' style='display:none' >
+
+    </div>
+
+    <div id='carrito_showed' style='display:none'>
+        <button id='volver_base'>↩</button>
+        <div id='finish'>
+        </div>
+    </div>
+
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser.local_storage import storage
+        from browser import alert
+        from uuid import uuid4
+
+        @bind(document['show_carrito'], "click")
+        def mostrar_carrito(e):
+            document['base'].style.display = 'none'
+            document['carrito_showed'].style.display = 'inline'
+
+        @bind(document['volver_base'], "click")
+        def no_mostrar_carrito(e):
+            document['carrito_showed'].style.display = 'none'
+            document['base'].style.display = 'inline'
+
+        def bindear(ev):
+            x = ev.currentTarget.attrs['data-id-bind'] + 's'
+            document['base'].style.display = "none"
+            document[x].style.display = "inline"
+
+        for bind in document.select('.glow-on-hover'):
+            bind.bind("click", bindear)
+
+        def retroceder(ev):
+            x = ev.currentTarget.attrs['data-id-retroceder'] + 's'
+            document['base'].style.display = "inline"
+            document[x].style.display = "none"
+
+        for i in document.select('.retroceder'):
+            i.bind("click", retroceder)
+
+
+        def calcular_precio():
+            list = []
+            for i in document.select('.buyed'):
+                x = i.value
+                try:
+                    j = int(x)
+                except:
+                    alert('error')
+                list.append(j)
+
+            i = sum(list)
+
+            sumar = document.createElement("div", id='total_price')
+            sumar.html = f"<div id='total_price'><p style='color: white;' id='total'>Total: {i}US$</p>"
+            document['finish'].html = sumar.html
+
+        def borrar_cart(ev):
+            x = ev.currentTarget.attrs['data-id-borrar']
+            document[x].html = ""
+            calcular_precio()
+
+        def bind_precio(ev):
+            href = ev.currentTarget.attrs['data-id-href']
+            href_value = ev.currentTarget.attrs['data-id-value']
+            specs = ev.currentTarget.attrs['data-id-specs']
+            precio = ev.currentTarget.attrs['data-id-precio']
+
+            borrar = str(uuid4())
+            nombre_kit = str(uuid4())
+
+            div_cart = document.createElement("div", id=nombre_kit)
+            div_cart.html = f"<div id='{nombre_kit}' style='margin: 40px 0px'><a href='{href}' class='texto_costado'>{href_value}</a><p class='more_specs'>{specs}</p><button data-id-borrar='{nombre_kit}' align='right' id='{borrar}' class='button_delete'>✖</button><input class='buyed' value='{precio}' style='display:none'></input></div>"
+
+            document['carrito_showed'].appendChild(div_cart)
+
+            for i in document.select('.button_delete'):
+                i.bind("click", borrar_cart)
+
+            calcular_precio()
+
+        for i in document.select('.add-to-cart'):
+            i.bind("click", bind_precio)
+
+    </script>
+</body>
+</html>
