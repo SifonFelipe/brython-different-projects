@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>PC Build</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <link rel='shortcut icon' type="image/png" href="https://safework.es/wp-content/uploads/2020/05/icon-pc-2.png" >
+    <link rel='stylesheet' href='page-style.css' >
+
+    <style>
+        body {
+            background-color: #000000;
+            margin: 30px 30px;
+        }
+
+        #title {
+            color: white;
+            font-size: 60px;
+            font-family: "Ubuntu";
+            position: absolute;
+            margin: 10px 10px;
+            left: 1.5%;
+            top: 1.5%;
+        }
+
+    </style>
+</head>
+
+<body onload="brython()">
+
+    <div id='base'>
+        <h2 id='title'>PC Build</h1>
+        <button id='cpu' class='glow-on-hover' data-id-bind='cpu'>CPU</button>
+        <button id='gpu' class='glow-on-hover' data-id-bind='gpu'>GPU</button>
+        <button id='motherboards' class='glow-on-hover' data-id-bind='motherboards'>Motherboards</button>
+        <button id='ram' class='glow-on-hover' data-id-bind='ram'>RAM</button>
+        <button id='hdd' class='glow-on-hover' data-id-bind='hdd'>HDD</button>
+        <button id='ssd' class='glow-on-hover' data-id-bind='ssd'>SSD</button>
+        <button id='cabinet' class='glow-on-hover' data-id-bind='cabinet'>Cabinet</button>
+        <button id='psu' class='glow-on-hover' data-id-bind='psu'>Power Supply</button>
+        <button id='show_carrito' style='position: absolute; left: 70%;'>Carrito</button>
+    </div>
+
+    <div id='cpus' style="display:none">
+        <button class='retroceder' data-id-retroceder="cpu" >↩</button>
+        <button class='add-items' data-id-site='cpus_places'>+</button>
+        <div id='cpus_places'>
+        </div>
+
+    </div>
+
+    <div id='gpus' style="display:none">
+        <button data-id-retroceder='gpu' class='retroceder'>↩</button>
+        <button class='add-items' data-id-site='gpus_places'>+</button>
+        <div id='gpus_places'>
+        </div>
+
+    </div>
+
+    <div id='motherboardss' style='display:none' >
+        <button class='retroceder' data-id-retroceder='motherboards'>↩</button>
+        <button class='add-items' data-id-site='motherboard_places'>+</button>
+        <div id='motherboard_places'>
+        </div>
+
+    </div>
+
+    <div id='rams' style='display:none' >
+        <button class='retroceder' data-id-retroceder='ram'>↩</button>
+        <button class='add-items' data-id-site='ram_places'>+</button>
+        <div id='ram_places'>
+        </div>
+
+    </div>
+
+    <div id='hdds' style='display:none' >
+        <button class='retroceder' data-id-retroceder='hdd'>↩</button>
+        <button class='add-items' data-id-site='hdd_places'>+</button>
+        <div id='hdd_places'>
+        </div>
+    </div>
+
+    <div id='ssds' style='display:none' >
+        <button class='retroceder' data-id-retroceder='ssd'>↩</button>
+        <button class='add-items' data-id-site='ssd_places'>+</button>
+        <div id='ssd_places'>
+        </div>
+    </div>
+
+    <div id='cabinets' style='display:none' >
+        <button class='retroceder' data-id-retroceder='cabinet'>↩</button>
+        <button class='add-items' data-id-site='cabinets_places'>+</button>
+        <div id='cabinets_places'>
+        </div>
+    </div>
+
+    <div id='psus' style='display:none' >
+        <button class='retroceder' data-id-retroceder='psu'>↩</button>
+        <button class='add-items' data-id-site='psu_places'>+</button>
+        <div id='psu_places'>
+        </div>
+    </div>
+
+    <div id='carrito_showed' style='display:none'>
+        <button id='volver_base'>↩</button>
+        <div id='total_price'>
+            <p id='total_price_show'>There is nothing here yet :(</p>
+        </div>
+
+        <div id='finish'>
+
+        </div>
+    </div>
+
+    <script type="text/python">
+        from browser import document
+        from browser import bind
+        from browser.local_storage import storage
+        from browser import alert
+        from uuid import uuid4
+ 
+        @bind(document['show_carrito'], "click")
+        def mostrar_carrito(e):
+            document['base'].style.display = 'none'
+            document['carrito_showed'].style.display = 'inline'
+
+        @bind(document['volver_base'], "click")
+        def no_mostrar_carrito(e):
+            document['carrito_showed'].style.display = 'none'
+            document['base'].style.display = 'inline'
+
+#bind to advance to a section
+        def avanzar(ev):
+            x = ev.currentTarget.attrs['data-id-bind'] + 's'
+            document['base'].style.display = "none"
+            document[x].style.display = "inline"
+
+        for j in document.select('.glow-on-hover'):
+            j.bind("click", avanzar)
+
+#bind to go back from a section to the menu
+        def retroceder(ev):
+            x = ev.currentTarget.attrs['data-id-retroceder'] + 's'
+            document['base'].style.display = "inline"
+            document[x].style.display = "none"
+
+        for i in document.select('.retroceder'):
+            i.bind("click", retroceder)
+
+
+        def borrar(ev):
+            x = ev.currentTarget.attrs['data-id-borrar']
+            document[x].html = ''
+            list = []
+            for i in document.select('.score_hidden'):
+		        value = i.value
+		        try:
+		            value_int = int(value)
+		            list.append(value_int)
+		        except:
+		            alert('error1')
+
+	    suma_total = sum(list)
+            j = f"<div><p id='total_price_show'>Total Price: {suma_total}$</p></div>"
+            document['total_price'].html = j
+
+        def agregar_carrito(ev):
+            name_note = ev.currentTarget.attrs['data-id-nota']
+            name_score = ev.currentTarget.attrs['data-id-puntaje']
+            name_item = ev.currentTarget.attrs['data-id-nombre']
+
+            item = document[name_item].value
+            score = document[name_score].value
+            list = []
+
+            try:
+                score_int = int(score)
+
+                note_in_cart = str(uuid4())
+
+                x = document.createElement("div", note_in_cart)
+
+                x.html = f"<div id='{note_in_cart}'><p class='name_text'>{item}</p><p class='score_text' data-id-puntaje='{score}' >{score + '$'}</p><input class='score_hidden' value='{score}' style='display:none' /><button class='borrar' data-id-borrar='{note_in_cart}'>X</button></div>"
+            
+                document['finish'].appendChild(x)
+
+                for i in document.select('.score_hidden'):
+                    value = i.value
+                    try:
+                        value_int = int(value)
+                        list.append(value_int)
+                    except:
+                        alert('wtf')
+
+                suma_total = sum(list)
+                j = f"<div><p id='total_price_show'>Total Price: {suma_total}$</p></div>"
+                document['total_price'].html = j
+
+                for i in document.select('.borrar'):
+                    i.bind("click", borrar)
+            except:
+                alert('Only Numbers in the price section')
+
+        def add_notes(place):
+            name_item = str(uuid4())
+            name_score = str(uuid4())
+            name_note = str(uuid4())
+            name_button = str(uuid4())
+
+            note = document.createElement("div", id=name_note)
+            
+            note.html = f"<ul><li><input value='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' value='Price Here' id='{name_score}' class='input_score' /></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
+                        
+            document[place].appendChild(note)
+            
+            document[name_button].bind("click", agregar_carrito)
+
+        def add_in_place(ev):
+            x = ev.currentTarget.attrs['data-id-site']
+            add_notes(x)
+
+        for i in document.select('.add-items'):
+            i.bind("click", add_in_place)
+
+
+    </script>
+</body>
+</html>
