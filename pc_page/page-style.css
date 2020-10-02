@@ -220,3 +220,22 @@
     font-family: 'Ubuntu';
     color: white;
 }
+
+.link {
+    font-size: 15px;
+    color: white;
+    font-family: 'Ubuntu';
+}
+
+.input_link {
+    font-size: 20px;
+    width: 500px;
+    height: 40px;
+    margin: 20px 0px;
+    background: none;
+    color: white;
+    border: 0;
+    border-bottom: 2px solid white;
+    font-family: 'Ubuntu';
+
+}
