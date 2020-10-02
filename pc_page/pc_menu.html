@@ -170,9 +170,11 @@
             name_note = ev.currentTarget.attrs['data-id-nota']
             name_score = ev.currentTarget.attrs['data-id-puntaje']
             name_item = ev.currentTarget.attrs['data-id-nombre']
+            name_url = ev.currentTarget.attrs['data-id-url']
 
             item = document[name_item].value
             score = document[name_score].value
+            url = document[name_url].value
             list = []
 
             try:
@@ -182,7 +184,7 @@
 
                 x = document.createElement("div", note_in_cart)
 
-                x.html = f"<div id='{note_in_cart}'><p class='name_text'>{item}</p><p class='score_text' data-id-puntaje='{score}' >{score + '$'}</p><input class='score_hidden' value='{score}' style='display:none' /><button class='borrar' data-id-borrar='{note_in_cart}'>X</button></div>"
+                x.html = f"<div id='{note_in_cart}'><ul><li><p class='name_text'>{item}</p></li><li><a class='link' href='{url}' >{url}</a></li><li><p class='score_text' data-id-puntaje='{score}' >{score + '$'}</p></li><li><input class='score_hidden' value='{score}' style='display:none' /></li><li><button class='borrar' data-id-borrar='{note_in_cart}'>X</button></li><li><p style='color: white; font-size: 20px;'>----------------------------------------------------------------</li></ul></div>"
             
                 document['finish'].appendChild(x)
 
@@ -208,10 +210,11 @@
             name_score = str(uuid4())
             name_note = str(uuid4())
             name_button = str(uuid4())
+            name_url = str(uuid4())
 
             note = document.createElement("div", id=name_note)
             
-            note.html = f"<ul><li><input placeholder='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' id='{name_score}' class='input_score' /></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
+            note.html = f"<ul><li><input placeholder='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' id='{name_score}' class='input_score' /></li><li><input type='text' placeholder='Item Page URL' id='{name_url}' class='input_link' /></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-url='{name_url}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
                         
             document[place].appendChild(note)
             
