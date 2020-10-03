@@ -162,9 +162,14 @@
 		        except:
 		            alert('error1')
 
-	    suma_total = sum(list)
+        suma_total = sum(list)
             j = f"<div><p id='total_price_show'>Total Price: {suma_total}$</p></div>"
             document['total_price'].html = j
+
+        def borrar2(ev):
+            x = ev.currentTarget.attrs['data-id-borrar']
+            document[x].html = ''
+
 
         def agregar_carrito(ev):
             name_note = ev.currentTarget.attrs['data-id-nota']
@@ -196,8 +201,8 @@
                     except:
                         alert('wtf')
 
-                suma_total = sum(list)
-                j = f"<div><p id='total_price_show'>Total Price: {suma_total}$</p></div>"
+                sumatotal = sum(list)
+                j = f"<div><p id='total_price_show'>Total Price: {sumatotal}$</p></div>"
                 document['total_price'].html = j
 
                 for i in document.select('.borrar'):
@@ -214,7 +219,7 @@
 
             note = document.createElement("div", id=name_note)
             
-            note.html = f"<ul><li><input placeholder='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' id='{name_score}' class='input_score' /></li><li><input type='text' placeholder='Item Page URL' id='{name_url}' class='input_link' /></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-url='{name_url}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
+            note.html = f"<ul><li><input placeholder='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' id='{name_score}' class='input_score' /></li><li><input type='text' placeholder='Item Page URL' id='{name_url}' class='input_link' /></li><li><button class='delete' data-id-borrar='{name_note}'>X</button></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-url='{name_url}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
                         
             document[place].appendChild(note)
             
