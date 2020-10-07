@@ -239,3 +239,27 @@
     font-family: 'Ubuntu';
 
 }
+
+#guardar {
+    font-size: 20px;
+    width: 125px;
+    height: 40px;
+    position: absolute;
+    border: 2px solid white;
+    left: 60%;
+    font-family: 'Ubuntu';
+    background: none;
+    color: white;
+}
+
+#cargar {
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    border: 2px solid white;
+    left: 53%;
+    font-family: 'Ubuntu';
+    background: none;
+    color: white;
+}
