@@ -32,6 +32,8 @@
 
     <div id='base'>
         <h2 id='title'>PC Build</h1>
+        <button id='guardar'>Guardar</button>
+        <button id='cargar'>Cargar</button>
         <button id='cpu' class='glow-on-hover' data-id-bind='cpu'>CPU</button>
         <button id='gpu' class='glow-on-hover' data-id-bind='gpu'>GPU</button>
         <button id='motherboards' class='glow-on-hover' data-id-bind='motherboards'>Motherboards</button>
@@ -162,8 +164,8 @@
 		        except:
 		            alert('error1')
 
-        suma_total = sum(list)
-            j = f"<div><p id='total_price_show'>Total Price: {suma_total}$</p></div>"
+            sumatotal = sum(list)
+            j = f"<div><p id='total_price_show'>Total Price: {sumatotal}</p></div>"
             document['total_price'].html = j
 
         def borrar2(ev):
@@ -189,7 +191,7 @@
 
                 x = document.createElement("div", note_in_cart)
 
-                x.html = f"<div id='{note_in_cart}'><ul><li><p class='name_text'>{item}</p></li><li><a class='link' href='{url}' >{url}</a></li><li><p class='score_text' data-id-puntaje='{score}' >{score + '$'}</p></li><li><input class='score_hidden' value='{score}' style='display:none' /></li><li><button class='borrar' data-id-borrar='{note_in_cart}'>X</button></li><li><p style='color: white; font-size: 20px;'>----------------------------------------------------------------</li></ul></div>"
+                x.html = f"<div id='{note_in_cart}'><ul><li><p class='name_text' >{item}</p></li><li><a class='link' href='{url}' >{url}</a></li><li><p class='score_text' data-id-puntaje='{score}'>{score}</p></li><li><input class='score_hidden' value='{score}' style='display:none' /></li><li><button class='borrar' data-id-borrar='{note_in_cart}'>X</button></li></ul><p style='color: white; font-size: 20px;'>────────────────────────────────────────────────────</p></div>"
             
                 document['finish'].appendChild(x)
 
@@ -210,7 +212,7 @@
             except:
                 alert('Only Numbers in the price section')
 
-        def add_notes(place):
+        def add_notes(place, item="", score="", url=""):
             name_item = str(uuid4())
             name_score = str(uuid4())
             name_note = str(uuid4())
@@ -219,11 +221,15 @@
 
             note = document.createElement("div", id=name_note)
             
-            note.html = f"<ul><li><input placeholder='Item Name Here' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' id='{name_score}' class='input_score' /></li><li><input type='text' placeholder='Item Page URL' id='{name_url}' class='input_link' /></li><li><button class='delete' data-id-borrar='{name_note}'>X</button></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-url='{name_url}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button>"
+            note.html = f"<div id='{name_note}'<ul><li><input placeholder='Item Name Here' value='{item}' type='text' id='{name_item}' class='inputs' /></li><li><input type='text' placeholder='Price Name Here' value='{score}' id='{name_score}' class='input_score' /></li><li><input type='text' value='{url}' placeholder='Item Page URL' id='{name_url}' class='input_link' /></li><li><button class='delete' data-id-borrar='{name_note}'>X</button></li></ul><button class='add-to-cart' data-id-nota='{name_note}' id='{name_button}' data-id-url='{name_url}' data-id-puntaje='{name_score}' data-id-nombre='{name_item}'>Add to Cart</button><input value='{place}' style='display:none' class='lugar'></input></div>"
                         
             document[place].appendChild(note)
             
             document[name_button].bind("click", agregar_carrito)
+
+            for i in document.select('.delete'):
+                i.bind("click", borrar2)
+
 
         def add_in_place(ev):
             x = ev.currentTarget.attrs['data-id-site']
@@ -231,8 +237,107 @@
 
         for i in document.select('.add-items'):
             i.bind("click", add_in_place)
+	
+        @bind(document['guardar'], "click")
+        def guardar(e):
+            cart_lista_item = []
+            for i in document.select('.name_text'):
+                cart_lista_item.append(i.text)
+            
+            storage['cart_item'] = 'separador'.join(cart_lista_item)
 
+            cart_lista_link = []
+            for i in document.select('.link'):
+                cart_lista_link.append(i.text)
 
+            storage['cart_link'] = 'separador'.join(cart_lista_link)
+            
+            cart_lista_score = []
+            for i in document.select('.score_text'):
+                cart_lista_score.append(i.text)
+
+            storage['cart_score'] = 'separador'.join(cart_lista_score)
+
+#save items who are not in the cart
+            lista_item = []
+            lista_lugar = []
+            for i in document.select('.inputs'):
+                lista_item.append(i.value)
+
+            for i in document.select('.lugar'):
+                lista_lugar.append(i.value)
+
+            storage['lugar'] = 'separador'.join(lista_lugar)
+            storage['items'] = 'separador'.join(lista_item)
+
+            lista_score = []
+            for i in document.select('.input_score'):
+                lista_score.append(i.value)
+
+            storage['score'] = 'separador'.join(lista_score)
+
+            lista_url = []
+            for i in document.select('.input_link'):
+                lista_url.append(i.value)
+
+            storage['url'] = 'separador'.join(lista_url)
+        
+        @bind(document['cargar'], "click")
+        def cargar(e):
+            items = storage['items'].split('separador')
+            score = storage['score'].split('separador')
+            url = storage['url'].split('separador')
+            lugar = storage['lugar'].split('separador')
+
+            x = int()
+
+            for i in items:
+                x += 1
+
+            for j in range(x):
+		try:
+                    add_notes(lugar[j], items[j], score[j], url[j])
+		except:
+	            None
+
+            cart_item = storage['cart_item'].split('separador')
+            cart_score = storage['cart_score'].split('separador')
+            cart_url = storage['cart_link'].split('separador')
+
+            price = []
+            x = 0
+            for i in cart_score:
+                try:
+                    int_price = int(i)
+                    price.append(int_price)
+                except:
+                    alert('wtf')
+                x += 1
+
+            print(cart_item)
+            print(cart_score)
+            print(cart_url)
+            for i in range(x):
+                note_name = str(uuid4())
+                delete_name = str(uuid4())
+
+                a = document.createElement("div", note_name)
+
+                item_seleccionado = cart_item[i]
+                score_seleccionado = cart_score[i]
+                url_seleccionado = cart_url[i]
+
+                a.html = f"<div id='{note_name}'><ul><li><p class='name_text'>{item_seleccionado}</p></li><li><a class='link' href='{url_seleccionado}' >{url_seleccionado}</a></li><li><p class='score_text'>{score_seleccionado}</p></li><li><input class='score_hidden' value='{score_seleccionado}' style='display:none' /></li><li><button id='{delete_name}' class='borrar' data-id-borrar='{note_name}'>X</button></li><li><p style='color: white; font-size: 20px;'>────────────────────────────────────────────────────</li></ul></div>"
+
+                document['finish'].appendChild(a)
+
+                for j in document.select('.borrar'):
+                    j.bind('click', borrar)
+                
+            y = sum(price)
+            h = f"<div><p id='total_price_show'>Total Price: {y}$</p></div>"
+            document['total_price'].html = h
+                
     </script>
 </body>
 </html>
