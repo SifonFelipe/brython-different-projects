@@ -1,0 +1,26 @@
+body, html {
+    background-color: rgb(20, 20, 20);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wait {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  h1, h3 {
+    color: white;
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+  }
+  
+  h3 {
+    margin-bottom: 10px;
+  }
