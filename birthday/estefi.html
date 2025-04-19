@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>???</title>
+    <title>para mi amor</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.13.0/brython.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.13.0/brython_stdlib.js"></script>
     <link rel="stylesheet" href="style.css" />
@@ -17,8 +17,9 @@
 
     html,
     body {
+      background-color: rgb(20, 20, 20);
       width: 100%;
-      height: 100%;
+      height: 80%;
       scrollbar-width: none;
       overflow: hidden;
     }
@@ -128,19 +129,6 @@
         font-size: 1.4em;
       }
     }
-
-/* Initially hide the cake and related elements */
-#cake, .cake, .fuego, .text {
-  display: none;
-}
-
-/* Make sure these display when timer ends */
-body.show-cake #cake,
-body.show-cake .cake,
-body.show-cake .fuego,
-body.show-cake .text {
-  display: block;
-}
 
   </style>
 </head>
@@ -305,23 +293,12 @@ body.show-cake .text {
     <p class="name">te amo mucho ♥</p>
     </div>
 
-
-<section id="part1">
-    <div class="wait">
-        <h3 id="time1"></h3>
-        <h1 id="waiting">...</h1>
-    
-    </div>
-
-    <script type="text/python" src="main.py"></script>
-</section>
-
 <audio id="musica-fondo" autoplay loop>
     <source src="birds.mp3" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
 </audio>
 
 <button id="boton-musica" class="music-button" style="margin-left:75%; margin-top: -12%">♪</button>
-
+<script type="text/python" src="main.py"></script>
 </body>
 </html>
