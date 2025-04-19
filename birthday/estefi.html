@@ -19,7 +19,7 @@
     body {
       background-color: rgb(20, 20, 20);
       width: 100%;
-      height: 80%;
+      height: 100%;
       scrollbar-width: none;
       overflow: hidden;
     }
@@ -130,6 +130,10 @@
       }
     }
 
+    body {
+        transform: scale(1.5); /* Aumentar el tamaño visual */
+        transform-origin: top; /* Mantener el origen en la parte superior */
+    }
   </style>
 </head>
 <body onload="brython()">
@@ -298,7 +302,7 @@
     Tu navegador no soporta el elemento de audio.
 </audio>
 
-<button id="boton-musica" class="music-button" style="margin-left:75%; margin-top: -12%">♪</button>
+<button id="boton-musica" class="music-button" style="margin-left:70%; margin-top: -12%">♪</button>
 <script type="text/python" src="main.py"></script>
 </body>
 </html>
