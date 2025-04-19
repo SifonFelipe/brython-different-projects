@@ -5,22 +5,51 @@ body, html {
     padding: 0;
   }
   
-  .wait {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
-  
-  h1, h3 {
-    color: white;
-    margin: 0;
-    font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
-  }
-  
-  h3 {
-    margin-bottom: 10px;
-  }
+.wait {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1, h3 {
+  color: white;
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+.music-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.music-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.music-button:active {
+  transform: scale(0.95);
+}
