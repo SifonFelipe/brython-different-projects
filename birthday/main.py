@@ -27,13 +27,13 @@ def change_time(total_seconds):
         parts.append(f"{minutes:02}m")
     parts.append(f"{seconds:02}s")
 
-    document["time"].text = " ".join(parts)
+    document["time1"].text = " ".join(parts)
 
     return total_seconds
 
 async def refresh_hour():
     now = datetime.now()
-    first_event = datetime(2025, 4, 18, 17)
+    first_event = datetime(2025, 4, 19, 00, 30)
 
     diference = first_event - now
     total_seconds = int(diference.total_seconds())
