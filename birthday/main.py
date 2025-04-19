@@ -33,7 +33,7 @@ def change_time(total_seconds):
 
 async def refresh_hour():
     now = datetime.now()
-    first_event = datetime(2025, 4, 19, 00, 30)
+    first_event = datetime(2025, 4, 19, 1)
 
     diference = first_event - now
     total_seconds = int(diference.total_seconds())
