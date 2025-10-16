@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sifon</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="cursor-dot" id="cursor"></div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo"><a href="../index.html">Sifon_</a></div>
+            <ul class="nav-links">
+                <!-- <li><a href="index.html#projects">Projects</a></li> -->
+                <li><a href="index.html">Blog</a></li>
+                <!-- <li><a href="index.html#lab">Lab</a></li> -->
+                <li><a href="../about_me.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="blog-index">
+        <div class="blog-index-container">
+            <!-- Header -->
+            <header class="blog-header">
+                <h1 class="blog-index-title">Blog</h1>
+                <p class="blog-index-subtitle">
+                    Thoughts on code, life, music, and everything in between. 
+                    Just ideas.
+                </p>
+            </header>
+
+            <!-- Filter/Search Section -->
+            <div class="blog-controls">
+                <div class="blog-search">
+                    <input type="text" id="searchInput" placeholder="Search posts..." class="search-input">
+                </div>
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="code">Code</button>
+                    <button class="filter-btn" data-filter="thoughts">Thoughts</button>
+                    <button class="filter-btn" data-filter="tutorials">Tutorials</button>
+                    <button class="filter-btn" data-filter="life">Life</button>
+                </div>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="blog-posts-grid">
+                <!-- Featured POST -->
+                <article class="blog-post-card featured" data-category="code tutorials">
+                    <div class="post-card-header">
+                        <span class="post-featured-badge">Featured</span>
+                        <span class="post-card-date">October 16, 2025</span>
+                    </div>
+                    <h2 class="post-card-title">
+                        <a href="./my_learning_path.html">Mi Camino de Aprendizaje en la Programación</a>
+                    </h2>
+                    <p class="post-card-excerpt">
+                        El camino de aprendizaje en el mundo de la programación
+                        inicialmente puede parecer escalofriante. Lo sé porque
+                        lo viví (y sin GPTs :p). Por eso, quiero compartir mi
+                        experiencia para que otros puedan tener una guía.
+                    </p>
+                    <div class="post-card-footer">
+                        <div class="post-card-tags">
+                            <span class="post-card-tag">microbit</span>
+                            <span class="post-card-tag">python</span>
+                            <span class="post-card-tag">tutorial</span>
+                        </div>
+                        <span class="post-card-readtime">8 min read</span>
+                    </div>
+                </article>
+
+                <!-- Example for other posts
+                <!-- Regular Posts (examples for when you have more)
+                <article class="blog-post-card" data-category="thoughts">
+                    <div class="post-card-header">
+                        <span class="post-card-date">October 10, 2025</span>
+                    </div>
+                    <h2 class="post-card-title">
+                        <a href="#">Why I Love Breaking Things</a>
+                    </h2>
+                    <p class="post-card-excerpt">
+                        There's something therapeutic about taking things apart. Whether it's 
+                        code or hardware, breaking things teaches you more than building ever could.
+                    </p>
+                    <div class="post-card-footer">
+                        <div class="post-card-tags">
+                            <span class="post-card-tag">learning</span>
+                            <span class="post-card-tag">philosophy</span>
+                        </div>
+                        <span class="post-card-readtime">4 min read</span>
+                    </div>
+                </article>
+                -->
+
+            <!-- Empty State (shows when no posts match filter) -->
+            <div class="empty-state" style="display: none;">
+                <p>No posts found matching your criteria.</p>
+                <button class="btn" onclick="resetFilters()">Show all posts</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Sifon — Built with love</p>
+    </footer>
+
+    <script src="../static/js/cursor.js"></script>
+    <script src="../static/js/smooth_scroll.js"></script>
+    <script src="../static/js/copy_code.js"></script>
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const posts = document.querySelectorAll('.blog-post-card');
+        const emptyState = document.querySelector('.empty-state');
+        const searchInput = document.getElementById('searchInput');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                filterPosts(filter, searchInput.value);
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            filterPosts(activeFilter, e.target.value);
+        });
+
+        function filterPosts(category, searchTerm) {
+            let visibleCount = 0;
+
+            posts.forEach(post => {
+                const postCategories = post.getAttribute('data-category');
+                const postTitle = post.querySelector('.post-card-title').textContent.toLowerCase();
+                const postExcerpt = post.querySelector('.post-card-excerpt').textContent.toLowerCase();
+                const searchLower = searchTerm.toLowerCase();
+
+                const matchesCategory = category === 'all' || postCategories.includes(category);
+                const matchesSearch = searchTerm === '' || 
+                                     postTitle.includes(searchLower) || 
+                                     postExcerpt.includes(searchLower);
+
+                if (matchesCategory && matchesSearch) {
+                    post.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            // Show/hide empty state
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function resetFilters() {
+            searchInput.value = '';
+            document.querySelector('.filter-btn[data-filter="all"]').click();
+        }
+
+       // Animate cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        posts.forEach(post => {
+            post.style.opacity = '0';
+            post.style.transform = 'translateY(20px)';
+            post.style.transition = 'all 0.6s ease';
+            observer.observe(post);
+        });
+    </script>
+</body>
+    </html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title - Sifon</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="cursor-dot" id="cursor"></div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo"><a href="index.html">Sifon_</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#lab">Lab</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <div class="post-container">
+            <!-- Post Header -->
+            <header class="post-header">
+                <a href="index.html#blog" class="back-link">← Back to Blog</a>
+                <h1 class="post-title">Building a Neural Network from Scratch</h1>
+                <div class="post-meta">
+                    <span class="post-date">October 16, 2025</span>
+                    <span class="post-separator">•</span>
+                    <span class="post-readtime">8 min read</span>
+                    <span class="post-separator">•</span>
+                    <span class="post-tags">
+                        <span class="tag">machine-learning</span>
+                        <span class="tag">python</span>
+                        <span class="tag">tutorial</span>
+                    </span>
+                </div>
+            </header>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                <!-- Intro paragraph -->
+                <p class="lead">
+                    Sometimes the best way to understand something is to build it yourself. 
+                    In this post, I'll walk through creating a simple neural network without 
+                    using any ML frameworks—just pure Python and NumPy.
+                </p>
+
+                <!-- Regular paragraph -->
+                <p>
+                    Neural networks can seem like magic at first, but they're really just 
+                    a series of mathematical operations. The beauty is in how these simple 
+                    operations combine to create something that can learn patterns from data.
+                </p>
+
+                <!-- Section heading -->
+                <h2>The Architecture</h2>
+
+                <p>
+                    We'll build a simple feedforward network with:
+                </p>
+
+                <!-- Unordered list -->
+                <ul>
+                    <li>An input layer (784 neurons for 28x28 images)</li>
+                    <li>One hidden layer (128 neurons)</li>
+                    <li>An output layer (10 neurons for digit classification)</li>
+                </ul>
+
+                <!-- Image with caption -->
+                <figure class="post-image">
+                    <img src="https://via.placeholder.com/800x400/1a1a1a/00ff88?text=Neural+Network+Architecture" alt="Neural network architecture diagram">
+                    <figcaption>Simple feedforward neural network architecture</figcaption>
+                </figure>
+
+                <!-- Code block -->
+                <h2>Implementation</h2>
+
+                <p>Let's start with the initialization:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">python</span>
+                        <button class="code-copy">Copy</button>
+                    </div>
+                    <pre class="language-python"><code class="language-python">import numpy as np
+
+class NeuralNetwork:
+    def __init__(self, input_size, hidden_size, output_size):
+        # Initialize weights with random values
+        self.W1 = np.random.randn(input_size, hidden_size) * 0.01
+        self.b1 = np.zeros((1, hidden_size))
+        
+        self.W2 = np.random.randn(hidden_size, output_size) * 0.01
+        self.b2 = np.zeros((1, output_size))
+    
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+    
+    def sigmoid_derivative(self, x):
+        return x * (1 - x)</code></pre>
+                </div>
+
+                <p>
+                    The key here is proper weight initialization. Using random values that 
+                    are too large can cause the gradients to explode, while values too small 
+                    can lead to vanishing gradients.
+                </p>
+
+                <!-- Blockquote -->
+                <blockquote>
+                    "The initialization of neural networks is often overlooked, but it can 
+                    make the difference between a model that converges quickly and one that 
+                    doesn't converge at all."
+                </blockquote>
+
+                <!-- Another section -->
+                <h2>Forward Pass</h2>
+
+                <p>The forward pass is where the magic happens:</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">python</span>
+                        <button class="code-copy">Copy</button>
+                    </div>
+                    <pre><code>def forward(self, X):
+    # Hidden layer
+    self.z1 = np.dot(X, self.W1) + self.b1
+    self.a1 = self.sigmoid(self.z1)
+    
+    # Output layer
+    self.z2 = np.dot(self.a1, self.W2) + self.b2
+    self.a2 = self.sigmoid(self.z2)
+    
+    return self.a2</code></pre>
+                </div>
+
+                <!-- Inline code -->
+                <p>
+                    Notice how we're using the <code>sigmoid</code> activation function. 
+                    You could also use <code>ReLU</code> or <code>tanh</code> depending 
+                    on your use case.
+                </p>
+
+                <!-- GIF placeholder -->
+                <figure class="post-image">
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/00ff88?text=Training+Animation" alt="Training process animation">
+                    <figcaption>Visualization of the training process (would be a GIF)</figcaption>
+                </figure>
+
+                <!-- Ordered list -->
+                <h2>Training Steps</h2>
+
+                <p>The training process follows these steps:</p>
+
+                <ol>
+                    <li>Initialize the network with random weights</li>
+                    <li>Forward pass: compute predictions</li>
+                    <li>Calculate the loss</li>
+                    <li>Backward pass: compute gradients</li>
+                    <li>Update weights using gradient descent</li>
+                    <li>Repeat until convergence</li>
+                </ol>
+
+                <!-- Info callout -->
+                <div class="callout callout-info">
+                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-content">
+                        <strong>Tip:</strong> Start with a small learning rate (like 0.01) 
+                        and adjust based on your training curves. If the loss oscillates 
+                        wildly, your learning rate is probably too high.
+                    </div>
+                </div>
+
+                <!-- Warning callout -->
+                <div class="callout callout-warning">
+                    <div class="callout-icon">⚠️</div>
+                    <div class="callout-content">
+                        <strong>Common pitfall:</strong> Don't forget to normalize your 
+                        input data! Neural networks perform much better when inputs are 
+                        scaled to a similar range.
+                    </div>
+                </div>
+
+                <!-- Success callout -->
+                <div class="callout callout-success">
+                    <div class="callout-icon">✓</div>
+                    <div class="callout-content">
+                        <strong>Pro tip:</strong> Use batch normalization between layers 
+                        to stabilize training and allow for higher learning rates.
+                    </div>
+                </div>
+
+                <!-- Horizontal rule -->
+                <hr class="post-divider">
+
+                <!-- Conclusion -->
+                <h2>Final Thoughts</h2>
+
+                <p>
+                    Building a neural network from scratch helps you understand what's 
+                    happening under the hood of libraries like PyTorch and TensorFlow. 
+                    While you wouldn't use this in production, it's an invaluable learning 
+                    exercise.
+                </p>
+
+                <p>
+                    The complete code is available on my GitHub. Feel free to experiment 
+                    with different architectures, activation functions, and learning rates.
+                </p>
+
+                <!-- Social share (optional) -->
+                <div class="post-footer">
+                    <div class="share-section">
+                        <span>Share this post:</span>
+                        <a href="#" class="share-btn">Twitter</a>
+                        <a href="#" class="share-btn">LinkedIn</a>
+                        <a href="#" class="share-btn">Copy Link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <p>© 2025 Sifon — Built with caffeine and curiosity</p>
+    </footer>
+
+    <script src="../static/js/cursor.js"></script>
+    <script src="../static/js/smooth_scroll.js"></script>
+    <script src="../static/js/copy_code.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</body>
+</html>
