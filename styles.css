@@ -1,4 +1,10 @@
- * {
+@font-face {
+    font-family: "Hurmit Nerd Font";
+    src: url("./fonts/HurmitNerdFontMono-Regular.otf") format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,7 +19,7 @@
 }
 
 body {
-    font-family: 'Courier New', monospace;
+    font-family: 'Hurmit Nerd Font Mono', monospace, 'Courier New';
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
