@@ -1,0 +1,47 @@
+.wait {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1, h3 {
+  color: white;
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+.music-button {
+  width: 60px; /* Aumentar el ancho */
+  height: 60px; /* Aumentar la altura */
+  border-radius: 50%;
+  background-color: #000; /* Mantener el color de fondo original */
+  color: #fff; /* Mantener el color del texto original */
+  border: none; /* Mantener sin borde */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Mantener el estilo de sombra */
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 28px; /* Aumentar el tamaño de la fuente */
+  position: relative; /* Cambiar a relative para posicionarlo mejor */
+  margin-top: -40px; /* Ajustar la posición para que esté cerca de la torta */
+  z-index: 1000;
+}
+
+.music-button:hover {
+  transform: scale(1.05); /* Mantener el efecto de hover original */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Mantener el estilo de sombra en hover */
+}
+
+.music-button:active {
+  transform: scale(0.95); /* Mantener el efecto de clic original */
+}

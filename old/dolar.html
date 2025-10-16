@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Dólar a Peso Argentino</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.7/brython_stdlib.min.js"></script>
+    <style>
+    body {
+        background-color:black;
+    }
+
+    #Titulo {
+        color: rgb(27, 116, 189);
+        font-family: 'Ubuntu';
+    }
+
+    .boton {
+        background-color:lightblue;
+        border-color:lightblue;
+        font-family: 'Ubuntu';
+    }
+    .boton_elige {
+        background: transparent;
+        border: 0;
+        color: green;
+        width: 75px;
+        height: 75px;
+        font-size: 60px;
+    }
+    .input {
+        background: transparent;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid rgb(27, 236, 236);
+        font-size: 14px;
+        font-family: "Ubuntu";
+        width: 800px;
+        color:rgb(17, 232, 240);
+        font-size: 20px;
+    }
+    .texto {
+        color:rgb(14, 247, 247);
+        font-size: 20px;
+        font-family: 'Ubuntu';
+    }
+    </style>
+</head>
+
+
+<body onload="brython()">
+
+    <h1 id='Titulo'>Dólar a Peso Argentino e inversa</h1>
+    <input type='button' id='dolar_a_peso' class='boton' value='Dolares a Pesos Argentinos' />
+    <input type='button' id='peso_a_dolar' class='boton' value='Peso Argentino a Dolares' />
+    <div class='texto' id='seleccion'></div>
+    <div class='texto' id='number_resultado'></div>
+    <div id='peso_dolar'></div>
+    <div id='dolar_peso'></div>
+    <div id='resultado_final' class='texto'></div>
+
+    <script type="text/python">
+        import random
+        from browser import document
+        from browser import bind
+        from browser import alert
+        
+        @bind(document['dolar_a_peso'], 'click')
+        def dolar_p(e):
+            document['peso_dolar'].html = ""
+            document['seleccion'].html = "<p>Escribe la cantidad:</p>"
+            document['number_resultado'].html = "<input type='text' class='input' id='number'/>"
+            document['dolar_peso'].html = "<input type='button' class='boton_elige' id='dolar_peso' value='✔' />"
+
+        @bind(document['peso_a_dolar'], 'click')
+        def peso_d(e):
+            document['dolar_peso'].html = ""
+            document['seleccion'].html = "<p class='texto'>Escribe la cantidad:<p>"
+            document['number_resultado'].html = "<input type='text' class='input' id='number' />"
+            document['peso_dolar'].html = "<input type='button' class='boton_elige' value='✔' id='peso_dolar' />"
+            
+        @bind(document['peso_dolar'], 'click')
+        def resultado(e):
+            el_input = document['number'].value
+            pesos_para_pasar = float(el_input)
+            peso_arg = 64.62
+            pasarlo = pesos_para_pasar / peso_arg
+            document['resultado_final'].text = 'Son {} Dolares'.format(pasarlo)
+
+        @bind(document['dolar_peso'], 'click')
+        def resultado1(e):
+            su_input = document['number'].value
+            dolares_para_pasar = float(su_input)
+            peso_arg = 64.62
+            pasar = dolares_para_pasar * peso_arg
+            document['resultado_final'].text = 'Son {} Pesos'.format(pasar)
+            
+    </script>
+</body>
+</html>
