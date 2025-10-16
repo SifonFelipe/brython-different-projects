@@ -1,0 +1,37 @@
+.blog-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+article {
+    background: var(--secondary); 
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+article img { 
+    width: 100%;
+    height: auto;
+    border-radius: 6px; 
+    margin: 0.5rem 0; }
+article h2 {
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+}
+article p {
+    color: var(--text);
+    line-height: 1.6;
+}
+
+pre[class*="language-"] {
+    border-radius: 8px;
+    overflow: auto;
+    margin-top: 0.5rem;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #00ff88;
+}
