@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QR Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.12.5/brython.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <link rel="stylesheet" href="page.css">
+</head>
+<body onload="brython()">
+    <div class="container">
+        <h1>QR Generator</h1>
+        
+        <label for="content-qr">Content</label>
+        <input type="text" id="content-qr" placeholder="Enter text or URL">
+        
+        <label for="size-qr">Size (px)</label>
+        <input type="number" id="size-qr" placeholder="128" value="128">
+        
+        <button type="button" id="create-qr">Generate QR Code</button>
+        
+        <div id="image-container"></div>
+        
+        <button type="button" id="copy-qr">Copy to Clipboard</button>
+    </div>
+</body>
+    <script type="text/python">
+        from browser import document, bind, window, html, aio, alert
+
+        async def copy_qr(ev):
+            img = document["image-container"].select_one("img")
+
+            if not img:
+                alert("there is no image")
+                return None
+
+            src = img.src           
+            
+            try:
+                # fetch como blob
+                resp = await window.fetch(src)
+
+                if not resp.ok:
+                    raise Exception(f"FETCH FALLO: {resp.status}")
+
+                blob = await resp.blob()
+
+                # create clipboard item and write in clipboard
+                item = window.ClipboardItem.new({ blob.type: blob })
+                await window.navigator.clipboard.write([item])
+
+            except Exception as e:
+                raise Exception(f"{e}")
+ 
+
+        @bind("#copy-qr", "click")
+        def run_copy_qr(ev):
+            aio.run(copy_qr(ev))
+          
+
+        @bind("#create-qr", "click")
+        def generate_qr(event):
+            content = document["content-qr"].value.strip()
+            try:
+                size = int(document["size-qr"].value)
+            except:
+                size = 128
+
+            if not content:
+                window.alert("Please enter some text!")
+                return
+
+            # clear prev QR
+            container = document["image-container"]
+            container.clear()
+
+            # js qr library
+            QRCode = window.QRCode.new
+            QRCode(container, {
+                "text": content,
+                "width": size,
+                "height": size,
+            })
+
+            print("created QR")
+
+    </script>
+</body>
+</html>
