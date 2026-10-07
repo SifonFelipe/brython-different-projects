@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Welcome to Sifon's blog.">
+    <title>Welcome to this small blog — Sifon</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+      (() => { const savedTheme = localStorage.getItem('theme'); if (savedTheme) document.documentElement.dataset.theme = savedTheme; })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="wordmark" href="../" aria-label="Sifon home">Sifon<span>.</span></a>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme" aria-pressed="false"><span aria-hidden="true">◐</span><span class="theme-label">Theme</span></button>
+    </header>
+    <main class="wrap article">
+      <a class="back" href="../">← All writing</a>
+      <article>
+        <header class="article-header">
+          <p class="post-meta">October 7, 2026 · 2 min read</p>
+          <h1>Welcome to this small blog</h1>
+        </header>
+        <div class="article-copy">
+          <p>This is a place for notes that do not fit in a quick message: things I am building, what I am learning, and the occasional idea worth returning to.</p>
+          <p>I want it to feel quiet and useful. If you are reading this, thank you for being here.</p>
+          <h2>What comes next</h2>
+          <p>There is no strict schedule. I will publish when there is something honest to share.</p>
+        </div>
+      </article>
+    </main>
+    <footer class="wrap site-footer"><p>Made slowly, from Córdoba.</p><p>© 2026 Sifon</p></footer>
+    <script src="../theme.js"></script>
+  </body>
+</html>

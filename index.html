@@ -1,141 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sifon</title>
-    <link rel="stylesheet" href="./static/css/styles.css">
-</head>
-<body>
-    <div class="grid-bg"></div>
-    <div class="cursor-dot" id="cursor"></div>
-
-    <nav>
-        <div class="nav-content">
-            <div class="logo">Sifon_</div>
-            <ul class="nav-links">
-                <!-- <li><a href="#projects">Projects</a></li> -->
-                <li><a href="./blog/index.html">Blog</a></li>
-                <!-- <li><a href="#lab">Lab</a></li> -->
-                <li><a href="./about_me.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <section class="hero">
-            <!-- first view -->
-            <h1 class="glitch" id="title"></h1>
-            <p class="subtitle">I build things, break things, and sometimes write about both.</p>
-            
-            <div class="cta-buttons">
-                <a href="https://github.com/SifonFelipe?tab=repositories" class="btn">View Projects</a>
-                <a href="./blog/index.html" class="btn">Read Blog</a>
-                <a href="./about_me.html" class="btn">About Me</a>
-            </div>
-
-            <!-- mini terminal -->
-            <div class="terminal">
-                <div class="terminal-header">
-                    <span class="terminal-dot dot-red"></span>
-                    <span class="terminal-dot dot-yellow"></span>
-                    <span class="terminal-dot dot-green"></span>
-                </div>
-                <div class="terminal-content">
-                    <div class="terminal-line" style="color: rgb(0, 135, 255);"><span class="prompt">❯</span> whoami</div>
-                    <div class="terminal-line">Developer • Tinkerer • Curious Mind</div>
-                    <div class="terminal-line" style="color: rgb(0, 135, 255);"><span class="prompt">❯</span> current_focus <span style="color: cyan;">--list</span></div>
-                    <div class="terminal-line">→ Exploring tech, building projects, learning everything</div>
-                    <div class="terminal-line" style="color: rgb(0, 135, 255);"><span class="prompt">❯</span> current_status</div>
-                    <div class="terminal-line">Finishing high school, going to study computer engineering</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- section cards -->
-        <section class="sections-preview">
-            <div class="section-card">
-                <div class="section-icon"></div>
-                <h3>Projects</h3>
-                <p>Code, experiments, hardware, web. Things I've made while figuring stuff out.</p>
-            </div>
-
-            <div class="section-card">
-                <div class="section-icon"></div>
-                <h3>Blog</h3>
-                <p>Thoughts on life, code, music, and everything in between. Just ideas.</p>
-            </div>
-
-            <div class="section-card">
-                <div class="section-icon"></div>
-                <h3>Now</h3>
-                <p>What I'm currently working on, learning or something in my life.</p>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>© 2025 Sifon — Built with love</p>
-    </footer>
-
-    <script src="./static/js/cursor.js"></script>
-    <script src="./static/js/smooth_scroll.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Notes by Sifon.">
+    <title>Sifon — Notes</title>
+    <link rel="stylesheet" href="styles.css">
     <script>
-        // Typewriter effect for title
-        const titles = ['Sifon_', 'Felipe Caminero'];
-        let titleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let isPaused = false;
-        const titleElement = document.getElementById('title');
-        const typingSpeed = 100;
-        const deletingSpeed = 50;
-        const pauseTime = 3000;
-
-        function typeWriter() {
-            const currentTitle = titles[titleIndex];
-            
-            if (isPaused) {
-                setTimeout(typeWriter, pauseTime);
-                isPaused = false;
-                isDeleting = true;
-                return;
-            }
-
-            if (isDeleting) {
-                titleElement.textContent = currentTitle.substring(0, charIndex - 1);
-                charIndex--;
-                
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    titleIndex = (titleIndex + 1) % titles.length;
-                    setTimeout(typeWriter, 500);
-                    return;
-                }
-            } else {
-                titleElement.textContent = currentTitle.substring(0, charIndex + 1);
-                charIndex++;
-                
-                if (charIndex === currentTitle.length) {
-                    isPaused = true;
-                }
-            }
-
-            const speed = isDeleting ? deletingSpeed : typingSpeed;
-            setTimeout(typeWriter, speed);
-        }
-
-        typeWriter();
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / 800);
-            }
-        });
+      (() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+      })();
     </script>
-</body>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="wordmark" href="./" aria-label="Sifon home">Sifon<span>.</span></a>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
+        <span aria-hidden="true">◐</span><span class="theme-label">Theme</span>
+      </button>
+    </header>
+
+    <main class="wrap">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A quiet corner of the internet</p>
+        <h1 id="page-title">Notes on making things,<br>learning, and noticing.</h1>
+        <p class="lede">A small personal blog. No noise, no algorithms—just articles worth keeping.</p>
+      </section>
+
+      <section class="posts" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <h2 id="latest-title">Latest writing</h2>
+          <p>Start here.</p>
+        </div>
+        <a class="post-card" href="posts/welcome.html">
+          <div>
+            <p class="post-meta">October 7, 2026 · 2 min read</p>
+            <h3>Welcome to this small blog</h3>
+            <p>A place for thoughts that deserve more room than a note to myself.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="wrap site-footer">
+      <p>Made slowly, from Córdoba.</p>
+      <p>© 2026 Sifon</p>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
 </html>
