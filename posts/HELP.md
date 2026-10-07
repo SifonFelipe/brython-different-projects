@@ -1,17 +1,18 @@
-## Create new article
-- Duplicate `new-article-template.html` and give a short URL name.
-- Add to the list in `index.html`
+## Crear un artículo nuevo
+
+- Duplicá `new-article-template.html` y asignale un nombre corto para la URL.
+- Agregalo a la lista de `index.html`.
 
 
-## Add an image
+## Agregar una imagen
 
-Upload an image to the `images/` folder in GitHub, then use this inside the article's `article-copy` section:
+Subí una imagen a la carpeta `images/` en GitHub y luego usá esto dentro de la sección `article-copy` del artículo:
 
 ```html
 <figure class="article-image">
-  <img src="../images/your-photo.jpg" alt="Describe what is visible in the image">
-  <figcaption>An optional, short caption.</figcaption>
+  <img src="../images/tu-foto.jpg" alt="Describí lo que se ve en la imagen">
+  <figcaption>Un epígrafe breve y opcional.</figcaption>
 </figure>
 ```
 
-The `../` in the path matters: articles live inside `posts/`, while images live at the repository root. Keep image filenames short, lowercase, and use hyphens (for example, `first-workbench.jpg`).
+El `../` de la ruta es importante: los artículos viven dentro de `posts/`, mientras que las imágenes están en la raíz del repositorio. Mantené los nombres de archivo de las imágenes cortos, en minúsculas y con guiones (por ejemplo, `primer-banco-de-trabajo.jpg`).

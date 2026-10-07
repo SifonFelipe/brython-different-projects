@@ -1,3 +1,3 @@
-# Sifon's blog
+# Blog de Sifon
 
-A small, static blog published with GitHub Pages at `www.sifonrojo.com`.
+Un pequeño blog estático publicado con GitHub Pages en `www.sifonrojo.com`.

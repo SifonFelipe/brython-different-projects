@@ -4,7 +4,7 @@ if (toggle) {
   const updateButton = () => {
     const theme = document.documentElement.dataset.theme || 'light';
     toggle.setAttribute('aria-pressed', String(theme === 'dark'));
-    toggle.querySelector('.theme-label').textContent = theme === 'dark' ? 'Light' : 'Dark';
+    toggle.querySelector('.theme-label').textContent = theme === 'dark' ? 'Claro' : 'Oscuro';
   };
 
   updateButton();

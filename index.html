@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Notes by Sifon.">
-    <title>Sifon — Notes</title>
+    <meta name="description" content="Notas de Sifon.">
+    <title>Sifon — Notas</title>
     <link rel="stylesheet" href="styles.css">
     <script>
       (() => {
@@ -15,37 +15,48 @@
   </head>
   <body>
     <header class="site-header wrap">
-      <a class="wordmark" href="./" aria-label="Sifon home">Sifon<span>.</span></a>
-      <button class="theme-toggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
-        <span aria-hidden="true">◐</span><span class="theme-label">Theme</span>
+      <a class="wordmark" href="./" aria-label="Inicio de Sifon">Sifon<span>.</span></a>
+      <button class="theme-toggle" type="button" aria-label="Cambiar el tema de color" aria-pressed="false">
+        <span aria-hidden="true">◐</span><span class="theme-label">Tema</span>
       </button>
     </header>
 
     <main class="wrap">
       <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">A quiet corner of the internet</p>
-        <h1 id="page-title">Notes on making things,<br>learning, and noticing.</h1>
-        <p class="lede">A small personal blog. No noise, no algorithms—just articles worth keeping.</p>
+        <h1 id="page-title">aprender y observar<br></h1>
+        <p class="lede">blog personal, contando cosas o pensamientos recurrentes</p>
       </section>
 
       <section class="posts" aria-labelledby="latest-title">
         <div class="section-heading">
-          <h2 id="latest-title">Latest writing</h2>
-          <p>Start here.</p>
+          <h2 id="latest-title">Posts</h2>
         </div>
-        <a class="post-card" href="posts/welcome.html">
+      
+        <a class="post-card" href="posts/dont-like-art.html">
           <div>
-            <p class="post-meta">October 7, 2026 · 2 min read</p>
-            <h3>Welcome to this small blog</h3>
-            <p>A place for thoughts that deserve more room than a note to myself.</p>
+            <p class="post-meta">7 de octubre de 2026 · 2 min de lectura</p>
+            <h3>No me gusta el arte</h3>
+            <p>Conozco gente que afirma no gustarle el arte (yo mismo lo hacía también) pero,
+              ¿realmente no te puede gustar el arte?</p>
           </div>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
+
+        <!-- Reference example -->
+        <!--
+        <a class="post-card" href="posts/welcome.html">
+          <div>
+            <p class="post-meta">7 de octubre de 2026 · 2 min de lectura</p>
+            <h3>Bienvenido a este pequeño blog</h3>
+            <p>Un lugar para pensamientos que merecen más espacio que una nota para mí.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        -->
       </section>
     </main>
 
     <footer class="wrap site-footer">
-      <p>Made slowly, from Córdoba.</p>
       <p>© 2026 Sifon</p>
     </footer>
     <script src="theme.js"></script>
